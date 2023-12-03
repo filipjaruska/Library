@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            dataGridView1 = new DataGridView();
-            comboBoxBranches = new ComboBox();
-            btnSave = new Button();
             panelMenu = new Panel();
             btnBorrowed = new Button();
             btnCopies = new Button();
@@ -39,50 +36,17 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             panelToFill = new Panel();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panelMenu.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(48, 428);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(132, 209);
-            dataGridView1.TabIndex = 1;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // comboBoxBranches
-            // 
-            comboBoxBranches.FormattingEnabled = true;
-            comboBoxBranches.Location = new Point(12, 327);
-            comboBoxBranches.Name = "comboBoxBranches";
-            comboBoxBranches.Size = new Size(224, 23);
-            comboBoxBranches.TabIndex = 3;
-            comboBoxBranches.SelectedIndexChanged += comboBoxBranches_SelectedIndexChanged;
-            // 
-            // btnSave
-            // 
-            btnSave.Enabled = false;
-            btnSave.Location = new Point(83, 365);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(75, 23);
-            btnSave.TabIndex = 4;
-            btnSave.Text = "button1";
-            btnSave.UseVisualStyleBackColor = true;
-            btnSave.Click += btnSave_Click;
             // 
             // panelMenu
             // 
             panelMenu.BackColor = Color.SlateBlue;
             panelMenu.Controls.Add(btnBorrowed);
             panelMenu.Controls.Add(btnCopies);
-            panelMenu.Controls.Add(dataGridView1);
-            panelMenu.Controls.Add(btnSave);
             panelMenu.Controls.Add(panel1);
-            panelMenu.Controls.Add(comboBoxBranches);
             panelMenu.Dock = DockStyle.Left;
             panelMenu.Location = new Point(0, 0);
             panelMenu.Name = "panelMenu";
@@ -181,7 +145,6 @@
             MaximizeBox = false;
             Name = "Form1";
             Text = "Library";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panelMenu.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -190,9 +153,6 @@
         }
 
         #endregion
-        private DataGridView dataGridView1;
-        private ComboBox comboBoxBranches;
-        private Button btnSave;
         private Panel panelMenu;
         private Button btnCopies;
         private Panel panel1;
