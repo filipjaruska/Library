@@ -57,14 +57,14 @@ namespace Library.Forms
                 DisplayBookCopies(branchId);
             }
         }
-
+        
         private void DisplayBookCopies(int branchId)
         {
             using (var context = new AppDbContext())
             {
                 var bookCopiesQuery = context.BookCopies
                     .Include(bc => bc.Book)
-                    .Where(bc => bc.BranchId == branchId)
+                    .Where(bc => bc.BranchId == branchId && bc.CopyAvailable == true)
                     .Select(bc => new BookCopyViewModel
                     {
                         CopyId = bc.CopyId,

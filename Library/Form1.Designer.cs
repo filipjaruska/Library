@@ -36,6 +36,7 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             panelToFill = new Panel();
+            btnStaff = new Button();
             panelMenu.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -44,6 +45,7 @@
             // panelMenu
             // 
             panelMenu.BackColor = Color.SlateBlue;
+            panelMenu.Controls.Add(btnStaff);
             panelMenu.Controls.Add(btnBorrowed);
             panelMenu.Controls.Add(btnCopies);
             panelMenu.Controls.Add(panel1);
@@ -131,6 +133,24 @@
             panelToFill.Size = new Size(1024, 681);
             panelToFill.TabIndex = 6;
             // 
+            // btnStaff
+            // 
+            btnStaff.FlatAppearance.BorderSize = 0;
+            btnStaff.FlatStyle = FlatStyle.Flat;
+            btnStaff.Font = new Font("Arial", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            btnStaff.Image = Properties.Resources.icons8_nook_52;
+            btnStaff.ImageAlign = ContentAlignment.MiddleLeft;
+            btnStaff.Location = new Point(0, 374);
+            btnStaff.Name = "btnStaff";
+            btnStaff.Padding = new Padding(15, 0, 15, 0);
+            btnStaff.Size = new Size(234, 60);
+            btnStaff.TabIndex = 3;
+            btnStaff.Text = "Staff";
+            btnStaff.TextAlign = ContentAlignment.MiddleLeft;
+            btnStaff.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnStaff.UseVisualStyleBackColor = true;
+            btnStaff.Click += btnStaff_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -160,5 +180,6 @@
         private PictureBox pictureBox1;
         private Label label1;
         private Panel panelToFill;
+        private Button btnStaff;
     }
 }

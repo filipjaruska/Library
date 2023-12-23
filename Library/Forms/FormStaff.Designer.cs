@@ -1,6 +1,6 @@
 ﻿namespace Library.Forms
 {
-    partial class FromBorrowed
+    partial class FormStaff
     {
         /// <summary>
         /// Required designer variable.
@@ -29,53 +29,26 @@
         private void InitializeComponent()
         {
             dataGridView1 = new DataGridView();
-            returned = new Button();
-            fine = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(98, 179);
+            dataGridView1.Location = new Point(173, 156);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(799, 451);
+            dataGridView1.Size = new Size(605, 365);
             dataGridView1.TabIndex = 0;
             // 
-            // returned
-            // 
-            returned.Location = new Point(773, 95);
-            returned.Name = "returned";
-            returned.Size = new Size(124, 47);
-            returned.TabIndex = 1;
-            returned.Text = "Returned";
-            returned.UseVisualStyleBackColor = true;
-            returned.Click += returned_Click;
-            // 
-            // fine
-            // 
-            fine.Location = new Point(608, 96);
-            fine.Name = "fine";
-            fine.Size = new Size(118, 46);
-            fine.TabIndex = 2;
-            fine.Text = "button2";
-            fine.UseVisualStyleBackColor = true;
-            // 
-            // FromBorrowed
+            // FormStaff
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1008, 642);
-            Controls.Add(fine);
-            Controls.Add(returned);
             Controls.Add(dataGridView1);
-            Name = "FromBorrowed";
-            Text = "FromBorrowed";
+            Name = "FormStaff";
+            Text = "FormStaff";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
@@ -83,7 +56,5 @@
         #endregion
 
         private DataGridView dataGridView1;
-        private Button returned;
-        private Button fine;
     }
 }

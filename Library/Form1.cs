@@ -12,8 +12,27 @@ namespace Library
         {
             InitializeComponent();
         }
+
         public Form currentChildForm;
         public Button btnCurrent;
+
+        private void btnCopies_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, Color.Aqua);
+            OpenChildForm(new FromCopies());
+        }
+
+        private void btnBorrowed_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, Color.Red);
+            OpenChildForm(new FromBorrowed());
+        }
+
+        private void btnStaff_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, Color.Green);
+            OpenChildForm(new FormStaff());
+        }
 
         public void ActivateButton(object btnSender, Color color)
         {
@@ -40,18 +59,6 @@ namespace Library
             }
         }
 
-        private void btnCopies_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender, Color.Aqua);
-            OpenChildForm(new  FromCopies());
-        }
-
-        private void btnBorrowed_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender, Color.Red);
-            OpenChildForm(new FromBorrowed());
-        }
-
         public void OpenChildForm(Form childForm)
         {
             if (currentChildForm != null)
@@ -68,6 +75,8 @@ namespace Library
             childForm.BringToFront();
             childForm.Show();
         }
+
+
     }
 
 }
