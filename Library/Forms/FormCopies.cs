@@ -1,4 +1,5 @@
-﻿using Library.Data;
+﻿using Library.Components;
+using Library.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -54,18 +55,11 @@ namespace Library.Forms
             if (comboBoxBranches.SelectedIndex > -1)
             {
                 int branchId = (int)comboBoxBranches.SelectedValue!;
-                DisplayBookCopies(branchId);
-            }
-        }
-        
-        private void DisplayBookCopies(int branchId)
-        {
-            using (var context = new AppDbContext())
-            {
-                var bookCopiesQuery = context.BookCopies
-                    .Include(bc => bc.Book)
-                    .Where(bc => bc.BranchId == branchId && bc.CopyAvailable == true)
-                    .Select(bc => new BookCopyViewModel
+                var binder = new DataGridBinder();
+                binder.BindDataToGrid(
+                    queryFunc: context => context.BookCopies.Include(bc => bc.Book),
+                    whereFunc: bc => bc.BranchId == branchId && bc.CopyAvailable == true,
+                    selectFunc: bc => new BookCopyViewModel
                     {
                         CopyId = bc.CopyId,
                         BookId = bc.BookId,
@@ -73,12 +67,13 @@ namespace Library.Forms
                         Condition = bc.CopyCondition,
                         Acquisition = bc.CopyAcquisitionYear,
                         Available = bc.CopyAvailable,
-                    });
-
-                var bookCopiesList = new BindingList<BookCopyViewModel>(bookCopiesQuery.ToList());
-                dataGridView1.DataSource = bookCopiesList;
+                    },
+                    dataGridView: dataGridView1
+                );
             }
         }
+        
+ 
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

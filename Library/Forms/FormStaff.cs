@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.EntityFrameworkCore;
-using static Library.Forms.FromCopies;
+using Library.Components;
 
 namespace Library.Forms
 {
@@ -19,23 +19,21 @@ namespace Library.Forms
         {
             InitializeComponent();
 
-            using (var context = new AppDbContext())
-            {
-                var StaffQuery = context.Staffs
-                    .Include(lb => lb.LibraryBranch)
-                    .Select(s => new StaffViewModel
-                    {
-                        StaffId = s.StaffId,
-                        BranchId = s.BranchId,
-                        BranchName = s.LibraryBranch.BranchName,
-                        StaffName = s.StaffFirstName + " " + s.StaffLastName,
-                        Possition = s.StaffPosition,
-                        Salary = s.StaffSalary,
-                    });
-
-                var bookCopiesList = new BindingList<StaffViewModel>(StaffQuery.ToList());
-                dataGridView1.DataSource = bookCopiesList;
-            }
+            var binder = new DataGridBinder();
+            binder.BindDataToGrid(
+                queryFunc: context => context.Staffs.Include(lb => lb.LibraryBranch),
+                whereFunc: null,
+                selectFunc: s => new StaffViewModel
+                {
+                    StaffId = s.StaffId,
+                    BranchId = s.BranchId,
+                    BranchName = s.LibraryBranch.BranchName,
+                    StaffName = s.StaffFirstName + " " + s.StaffLastName,
+                    Possition = s.StaffPosition,
+                    Salary = s.StaffSalary,
+                },
+                dataGridView: dataGridView1
+            );
         }
 
         public class StaffViewModel
@@ -47,5 +45,7 @@ namespace Library.Forms
             public string Possition { get; set; }
             public double Salary { get; set; }
         }
+
+        
     }
 }

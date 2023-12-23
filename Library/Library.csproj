@@ -29,7 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Components\" />
+    <Folder Include="Components\FormCopies\" />
+    <Folder Include="Components\FromStaff\" />
+    <Folder Include="Components\FromBorrowed\" />
   </ItemGroup>
 
 </Project>
