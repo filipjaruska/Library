@@ -82,11 +82,11 @@ _Note: It's a good practice to wrap database operations in a `using` statement t
 
 - `var viewModelList = filteredQuery.Select(selectFunc).ToList();`: Projects the filtered entities into view models using the `selectFunc` and converts the result to a list.
 
-#### [List vs BindingList](https://stackoverflow.com/questions/2243950/listt-vs-bindinglistt-advantages-disadvantages)
+#### [`List vs BindingList`](https://stackoverflow.com/questions/2243950/listt-vs-bindinglistt-advantages-disadvantages)
 
-A List<> is simply an automatically resizing array, of items of a given type, with a couple of helper functions (eg: sort). It's just the data, and you're likely to use it to run operations on a set of objects in your model.
+A `List<>` is simply an automatically resizing array, of items of a given type, with a couple of helper functions (eg: sort). It's just the data, and you're likely to use it to run operations on a set of objects in your model.
 
-A BindingList<> is a wrapper around a typed list or a collection, which implements the IBindingList interface. This is one of the standard interfaces that support two-way databinding. It works by implementing the ListChanged event, which is raised when you add, remove, or set items. Bound controls listen to this event in order to know when to refresh their display.
+A `BindingList<>` is a wrapper around a typed list or a collection, which implements the IBindingList interface. This is one of the standard interfaces that support two-way databinding. It works by implementing the ListChanged event, which is raised when you add, remove, or set items. Bound controls listen to this event in order to know when to refresh their display.
 
 When you set a BindingSource's DataSource to a List<>, it internally creates a BindingList<> to wrap your list. You may want to pre-wrap your list with a BindingList<> yourself if you want to access it outside of the BindingSource, but otherwise it's just the same. You can also inherit from BindingList<> to implement special behavior when changing items.
 

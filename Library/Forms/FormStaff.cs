@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.EntityFrameworkCore;
 using Library.Components;
+using static Library.Forms.FromCopies;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Library.Forms
 {
@@ -18,6 +20,13 @@ namespace Library.Forms
         public FormStaff()
         {
             InitializeComponent();
+
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkBlue;
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.Silver;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
 
             var binder = new DataGridBinder();
             binder.BindDataToGrid(
@@ -46,6 +55,55 @@ namespace Library.Forms
             public double Salary { get; set; }
         }
 
-        
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                BindingList<StaffViewModel>? data = dataGridView1.DataSource as BindingList<StaffViewModel>;
+                if (data != null)
+                {
+                    var selectedRowIndex = dataGridView1.SelectedRows[0].Index;
+                    if (selectedRowIndex >= 0 && selectedRowIndex < data.Count)
+                    {
+                        var selectedStaff = data[selectedRowIndex];
+                        textBox1.Text = selectedStaff.Salary.ToString();
+                    }
+                }
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            var deleteDataGridRow = new DeleteDataGridRow();
+            deleteDataGridRow.DeleteSelectedRow<Staff, StaffViewModel>(dataGridView1, viewModel => viewModel.StaffId);
+            
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                BindingList<StaffViewModel>? data = dataGridView1.DataSource as BindingList<StaffViewModel>;
+                if (data != null)
+                {
+                    var selectedRowIndex = dataGridView1.SelectedRows[0].Index;
+                    if (selectedRowIndex >= 0 && selectedRowIndex < data.Count)
+                    {
+                        var selectedStaff = data[selectedRowIndex];
+                        double newSalary;
+                        if (double.TryParse(textBox1.Text, out newSalary))
+                        {
+                            selectedStaff.Salary = newSalary;
+                            dataGridView1.Refresh();
+                        }
+                        else
+                        {
+                            //error
+                        }
+                    }
+                }
+            }
+        }
     }
 }

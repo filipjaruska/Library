@@ -28,23 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panelMenu = new Panel();
+            btnStaff = new Button();
             btnBorrowed = new Button();
             btnCopies = new Button();
             panel1 = new Panel();
             label1 = new Label();
             pictureBox1 = new PictureBox();
             panelToFill = new Panel();
-            btnStaff = new Button();
+            button1 = new Button();
+            tbPassword = new TextBox();
+            tbUser = new TextBox();
+            tbDB = new TextBox();
+            tbHost = new TextBox();
+            textBox1 = new TextBox();
+            label2 = new Label();
+            errorProvider1 = new ErrorProvider(components);
+            btnBooks = new Button();
             panelMenu.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panelToFill.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // panelMenu
             // 
             panelMenu.BackColor = Color.SlateBlue;
+            panelMenu.Controls.Add(btnBooks);
             panelMenu.Controls.Add(btnStaff);
             panelMenu.Controls.Add(btnBorrowed);
             panelMenu.Controls.Add(btnCopies);
@@ -54,6 +67,24 @@
             panelMenu.Name = "panelMenu";
             panelMenu.Size = new Size(240, 681);
             panelMenu.TabIndex = 5;
+            // 
+            // btnStaff
+            // 
+            btnStaff.FlatAppearance.BorderSize = 0;
+            btnStaff.FlatStyle = FlatStyle.Flat;
+            btnStaff.Font = new Font("Arial", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            btnStaff.Image = Properties.Resources.icons8_nook_52;
+            btnStaff.ImageAlign = ContentAlignment.MiddleLeft;
+            btnStaff.Location = new Point(0, 374);
+            btnStaff.Name = "btnStaff";
+            btnStaff.Padding = new Padding(15, 0, 15, 0);
+            btnStaff.Size = new Size(234, 60);
+            btnStaff.TabIndex = 3;
+            btnStaff.Text = "Staff";
+            btnStaff.TextAlign = ContentAlignment.MiddleLeft;
+            btnStaff.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnStaff.UseVisualStyleBackColor = true;
+            btnStaff.Click += btnStaff_Click;
             // 
             // btnBorrowed
             // 
@@ -112,6 +143,7 @@
             label1.Size = new Size(108, 32);
             label1.TabIndex = 1;
             label1.Text = "Library";
+            label1.Click += label1_Click;
             // 
             // pictureBox1
             // 
@@ -120,36 +152,111 @@
             pictureBox1.InitialImage = Properties.Resources.icons8_book_stack_52;
             pictureBox1.Location = new Point(12, 28);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(54, 55);
+            pictureBox1.Size = new Size(180, 55);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // panelToFill
             // 
             panelToFill.BackColor = SystemColors.ActiveCaption;
+            panelToFill.Controls.Add(button1);
+            panelToFill.Controls.Add(tbPassword);
+            panelToFill.Controls.Add(tbUser);
+            panelToFill.Controls.Add(tbDB);
+            panelToFill.Controls.Add(tbHost);
+            panelToFill.Controls.Add(textBox1);
+            panelToFill.Controls.Add(label2);
             panelToFill.Dock = DockStyle.Fill;
             panelToFill.Location = new Point(240, 0);
             panelToFill.Name = "panelToFill";
             panelToFill.Size = new Size(1024, 681);
             panelToFill.TabIndex = 6;
             // 
-            // btnStaff
+            // button1
             // 
-            btnStaff.FlatAppearance.BorderSize = 0;
-            btnStaff.FlatStyle = FlatStyle.Flat;
-            btnStaff.Font = new Font("Arial", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            btnStaff.Image = Properties.Resources.icons8_nook_52;
-            btnStaff.ImageAlign = ContentAlignment.MiddleLeft;
-            btnStaff.Location = new Point(0, 374);
-            btnStaff.Name = "btnStaff";
-            btnStaff.Padding = new Padding(15, 0, 15, 0);
-            btnStaff.Size = new Size(234, 60);
-            btnStaff.TabIndex = 3;
-            btnStaff.Text = "Staff";
-            btnStaff.TextAlign = ContentAlignment.MiddleLeft;
-            btnStaff.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnStaff.UseVisualStyleBackColor = true;
-            btnStaff.Click += btnStaff_Click;
+            button1.Enabled = false;
+            button1.Location = new Point(745, 189);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 6;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Visible = false;
+            button1.Click += button1_Click;
+            // 
+            // tbPassword
+            // 
+            tbPassword.Location = new Point(601, 186);
+            tbPassword.Name = "tbPassword";
+            tbPassword.Size = new Size(100, 23);
+            tbPassword.TabIndex = 5;
+            tbPassword.Visible = false;
+            // 
+            // tbUser
+            // 
+            tbUser.Location = new Point(434, 189);
+            tbUser.Name = "tbUser";
+            tbUser.Size = new Size(100, 23);
+            tbUser.TabIndex = 4;
+            tbUser.Visible = false;
+            // 
+            // tbDB
+            // 
+            tbDB.Location = new Point(281, 183);
+            tbDB.Name = "tbDB";
+            tbDB.Size = new Size(100, 23);
+            tbDB.TabIndex = 3;
+            tbDB.Visible = false;
+            // 
+            // tbHost
+            // 
+            tbHost.Location = new Point(130, 183);
+            tbHost.Name = "tbHost";
+            tbHost.Size = new Size(100, 23);
+            tbHost.TabIndex = 2;
+            tbHost.Visible = false;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(321, 60);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(382, 60);
+            textBox1.TabIndex = 1;
+            textBox1.Visible = false;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(293, 9);
+            label2.Name = "label2";
+            label2.Size = new Size(436, 37);
+            label2.TabIndex = 0;
+            label2.Text = "Successfully connected to Database";
+            // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
+            // btnBooks
+            // 
+            btnBooks.FlatAppearance.BorderSize = 0;
+            btnBooks.FlatStyle = FlatStyle.Flat;
+            btnBooks.Font = new Font("Arial", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBooks.Image = Properties.Resources.icons8_nook_52;
+            btnBooks.ImageAlign = ContentAlignment.MiddleLeft;
+            btnBooks.Location = new Point(3, 290);
+            btnBooks.Name = "btnBooks";
+            btnBooks.Padding = new Padding(15, 0, 15, 0);
+            btnBooks.Size = new Size(234, 60);
+            btnBooks.TabIndex = 4;
+            btnBooks.Text = "Books";
+            btnBooks.TextAlign = ContentAlignment.MiddleLeft;
+            btnBooks.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnBooks.UseVisualStyleBackColor = true;
+            btnBooks.Click += btnBooks_Click;
             // 
             // Form1
             // 
@@ -169,6 +276,9 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panelToFill.ResumeLayout(false);
+            panelToFill.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
         }
 
@@ -181,5 +291,14 @@
         private Label label1;
         private Panel panelToFill;
         private Button btnStaff;
+        private Label label2;
+        private TextBox textBox1;
+        private ErrorProvider errorProvider1;
+        private Button button1;
+        private TextBox tbPassword;
+        private TextBox tbUser;
+        private TextBox tbDB;
+        private TextBox tbHost;
+        private Button btnBooks;
     }
 }

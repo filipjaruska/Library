@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 using System.Net;
 using Library.Forms;
+using System.Windows.Forms;
+using System.Xml;
 
 namespace Library
 {
@@ -11,6 +13,38 @@ namespace Library
         public Form1()
         {
             InitializeComponent();
+
+            bool x = false;
+            using (var dbContext = new AppDbContext())
+            {
+                try
+                {
+                    dbContext.Database.OpenConnection();
+                    dbContext.Database.CloseConnection();
+                }
+                catch (Exception e)
+                {
+                    label2.Text = "No connection to database";
+                    textBox1.Text = "error lol";
+                    errorProvider1.SetError(textBox1, e.Message);
+                    x = true;
+
+                }
+            }
+
+            string configFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Library/Data/App.config");
+
+            if (!File.Exists(configFilePath) || x)
+            {
+                textBox1.Text = "This likely occurs due to App.config file missing, please specify connection detail below and restart the app.";
+                textBox1.Visible = true;
+                tbHost.Visible = true;
+                tbDB.Visible = true;
+                tbUser.Visible = true;
+                tbPassword.Visible = true;
+                button1.Visible = true;
+                button1.Enabled = true;
+            }
         }
 
         public Form currentChildForm;
@@ -26,6 +60,12 @@ namespace Library
         {
             ActivateButton(sender, Color.Red);
             OpenChildForm(new FromBorrowed());
+        }
+
+        private void btnBooks_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, Color.Peru);
+            OpenChildForm(new FromBooks());
         }
 
         private void btnStaff_Click(object sender, EventArgs e)
@@ -74,6 +114,52 @@ namespace Library
             panelToFill.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Reset();
+        }
+
+        private void Reset()
+        {
+            DisableButton();
+            currentChildForm.Close();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            Reset();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string configFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Library/Data/App.config");
+
+
+
+            XmlDocument doc = new XmlDocument();
+
+            XmlElement configurationElement = doc.CreateElement("configuration");
+            doc.AppendChild(configurationElement);
+
+            XmlElement connectionStringsElement = doc.CreateElement("connectionStrings");
+            configurationElement.AppendChild(connectionStringsElement);
+
+            XmlElement addElement = doc.CreateElement("add");
+            addElement.SetAttribute("name", "DefaultConnection");
+
+            string host = tbHost.Text;
+            string database = tbDB.Text;
+            string username = tbUser.Text;
+            string password = tbPassword.Text;
+
+            addElement.SetAttribute("connectionString", $"Host={host}; Database={database}; Username={username}; Password={password}");
+            addElement.SetAttribute("providerName", "System.Data.SqlClient");
+            connectionStringsElement.AppendChild(addElement);
+
+            doc.Save(configFilePath);
+
         }
 
 
