@@ -10,49 +10,35 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Library.Data;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using static Library.Forms.FormStaff;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Reflection.Metadata;
+using System.Configuration;
 
 namespace Library.Forms
 {
     public partial class FromBooks : Form
     {
+        private string _linkToGoogleBookPage;
         public FromBooks()
         {
             InitializeComponent();
-
-
-            //basic
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.BackgroundColor = Color.WhiteSmoke;
-            dataGridView1.BorderStyle = BorderStyle.None;
-            //header
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkBlue;
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            //cels
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.Silver;
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
-
-            //grid and row
-            dataGridView1.GridColor = Color.Gray;
-            dataGridView1.RowHeadersVisible = false;
-
-
-
+            // Changes the style of the DataGridView so that i don't have to do it manually every time
+            DataGridStyle.DefaultStyle(dataGridView1);
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.Columns.Clear();
 
+            // DataGridView columns
             var bookTitleColumn = new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "BookTitle",
                 HeaderText = "Book Title",
                 Name = "bookTitleColumn"
             };
-
             dataGridView1.Columns.Add(bookTitleColumn);
 
+            // Loads data into the DataGridView
             var binder = new DataGridBinder();
             binder.BindDataToGrid(
                 queryFunc: context => context.Books,
@@ -60,86 +46,54 @@ namespace Library.Forms
                 selectFunc: b => b,
                 dataGridView: dataGridView1
             );
-
-
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private async void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                BindingList<Book>? data = dataGridView1.DataSource as BindingList<Book>;
-                if (data != null)
-                {
-                    var selectedRowIndex = dataGridView1.SelectedRows[0].Index;
-                    if (selectedRowIndex >= 0 && selectedRowIndex < data.Count)
-                    {
-                        var selectedBook = data[selectedRowIndex];
-                        lbName.Text = selectedBook.BookTitle;
-                        lbId.Text = selectedBook.BookId.ToString();
-
-                        using (var context = new AppDbContext())
-                        {
-                            var book = context.Books.Include(b => b.BookAuthors)
-                                .ThenInclude(ba => ba.Author)
-                                .Single(b => b.BookId == selectedBook.BookId);
-
-                            lbAuthor.Text = $@"{book.BookAuthors.First().Author.AuthorFirstName} {book.BookAuthors.First().Author.AuthorLastName}";
-                        }
-
-
-                        string apiKey = "bruh"; 
-                        string apiUrl = $"https://api.nytimes.com/svc/books/v3/reviews.json?title={selectedBook.BookTitle}&api-key={apiKey}";
-
-
-                        wtf(apiUrl);
-                        
-
-
-                    }
-                }
-            }
+            BookSelection bookSelection = new BookSelection(dataGridView1, lbName, lbId, lbIsbn, lbAuthor, pictureBox1, textBox1);
+            await bookSelection.HandleBookSelection();
+            _linkToGoogleBookPage = bookSelection.linkToGoogleBookPage;
         }
 
-        private async Task wtf(string apiUrl)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                HttpResponseMessage response = await client.GetAsync(apiUrl);
-                if (response.IsSuccessStatusCode)
-                {
-                    string content = await response.Content.ReadAsStringAsync();
-                    dynamic json = JsonConvert.DeserializeObject(content);
-                    string description = json.results[0].book_summary;
-
-                    
-                    textBox1.Text = description;
-                }
-            }
-        }
-
+        // Opens a new tab in the browser with defined search query
         private void lbName_Click(object sender, EventArgs e)
         {
-            string urlEncodedSearchQuery = System.Web.HttpUtility.UrlEncode(lbName.Text);
-
-            var psi = new System.Diagnostics.ProcessStartInfo
-            {
-                FileName = $"https://www.google.com/search?q={urlEncodedSearchQuery}",
-                UseShellExecute = true
-            };
-            System.Diagnostics.Process.Start(psi);
+            OpenBrowser.OpenLinkInBrowser("https://www.google.com/search?q=", lbName.Text);
         }
 
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            OpenBrowser.OpenLinkInBrowser(_linkToGoogleBookPage);
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            OpenBrowser.OpenLinkInBrowser("https://www.youtube.com/results?search_query=", lbName.Text + " Book");
+        }
+
+        // Hover effect for the lbName
         private void lbName_MouseEnter(object sender, EventArgs e)
         {
             this.Cursor = Cursors.Hand;
-            lbName.ForeColor = Color.Red;
+            lbName.ForeColor = Color.BlueViolet;
         }
 
         private void lbName_MouseLeave(object sender, EventArgs e)
         {
             this.Cursor = Cursors.Default;
             lbName.ForeColor = Color.Black;
+        }
+
+        // Hover effect for the pictureBox
+        private void pictureBox2_MouseEnter(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.Hand;
+        }
+
+        private void pictureBox2_MouseLeave(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.Default;
         }
     }
 }

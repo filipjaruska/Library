@@ -36,6 +36,10 @@ The XML markup in the configuration file sets up the connection string for the d
       providerName="System.Data.SqlClient"
     />
   </connectionStrings>
+  <appSettings>
+    <add key="GoogleCustomSearchApiKey" value="ApiKey" />
+    <add key="GoogleCustomSearchCx" value="SearchCx" />
+</appSettings>
 </configuration>
 ```
 

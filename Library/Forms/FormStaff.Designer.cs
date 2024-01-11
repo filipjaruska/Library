@@ -61,15 +61,15 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(724, 81);
+            textBox1.Location = new Point(714, 81);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
+            textBox1.Size = new Size(110, 23);
             textBox1.TabIndex = 1;
             // 
             // button1
             // 
             button1.AccessibleName = "btnEdit";
-            button1.Location = new Point(840, 81);
+            button1.Location = new Point(830, 81);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 3;
@@ -79,7 +79,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(921, 81);
+            btnDelete.Location = new Point(911, 81);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(75, 23);
             btnDelete.TabIndex = 4;
@@ -90,9 +90,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(680, 89);
+            label1.BackColor = Color.White;
+            label1.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(649, 78);
             label1.Name = "label1";
-            label1.Size = new Size(38, 15);
+            label1.Size = new Size(59, 25);
             label1.TabIndex = 5;
             label1.Text = "Salary";
             // 
