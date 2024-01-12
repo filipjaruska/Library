@@ -15,21 +15,32 @@ namespace Library
         {
             InitializeComponent();
             textBox1.Visible = true;
-            textBox1.Text = Path.GetFullPath("App.config");
-            using (var dbContext = new AppDbContext())
+
+            try
             {
-                label2.Text = "Succesfuly connected to database";
-                try
+                textBox1.Text = Path.GetFullPath("App.config");
+            }
+            catch (Exception e)
+            {
+                errorProvider1.SetError(textBox1, e.Message);
+            }
+
+
+            label2.Text = "Succesfuly connected to database";
+            try
+            {
+                using (var dbContext = new AppDbContext())
                 {
                     dbContext.Database.OpenConnection();
                     dbContext.Database.CloseConnection();
                 }
-                catch (Exception e)
-                {
-                    label2.Text = "No connection to database";
-                    errorProvider1.SetError(textBox1, e.Message);
-                }
             }
+            catch (Exception e)
+            {
+                label2.Text = "No connection to database";
+                errorProvider1.SetError(textBox1, e.Message);
+            }
+            
         }
 
         private Form _currentChildForm;
@@ -38,28 +49,28 @@ namespace Library
         {
             _btnCurrent = HandleActivateButton(sender, Color.Aqua);
             ChildFormOpener childFormOpener = new ChildFormOpener(panelToFill);
-            _currentChildForm = childFormOpener.OpenChildForm(new FromCopies());
+            _currentChildForm = childFormOpener.OpenChildForm(new FromCopies(), _currentChildForm);
         }
 
         private void btnBorrowed_Click(object sender, EventArgs e)
         {
             _btnCurrent = HandleActivateButton(sender, Color.Red);
             ChildFormOpener childFormOpener = new ChildFormOpener(panelToFill);
-            _currentChildForm = childFormOpener.OpenChildForm(new FromBorrowed());
+            _currentChildForm = childFormOpener.OpenChildForm(new FromBorrowed(), _currentChildForm);
         }
 
         private void btnBooks_Click(object sender, EventArgs e)
         {
             _btnCurrent = HandleActivateButton(sender, Color.Peru);
             ChildFormOpener childFormOpener = new ChildFormOpener(panelToFill);
-            _currentChildForm = childFormOpener.OpenChildForm(new FromBooks());
+            _currentChildForm = childFormOpener.OpenChildForm(new FromBooks(), _currentChildForm);
         }
 
         private void btnStaff_Click(object sender, EventArgs e)
         {
             _btnCurrent = HandleActivateButton(sender, Color.Green);
             ChildFormOpener childFormOpener = new ChildFormOpener(panelToFill);
-            _currentChildForm = childFormOpener.OpenChildForm(new FormStaff());
+            _currentChildForm = childFormOpener.OpenChildForm(new FormStaff(), _currentChildForm);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

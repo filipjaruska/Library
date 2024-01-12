@@ -48,20 +48,20 @@
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.GridColor = Color.Gray;
-            dataGridView1.Location = new Point(12, 137);
+            dataGridView1.Location = new Point(12, 41);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(984, 493);
+            dataGridView1.Size = new Size(984, 589);
             dataGridView1.TabIndex = 0;
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(714, 81);
+            textBox1.Location = new Point(76, 12);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(110, 23);
             textBox1.TabIndex = 1;
@@ -69,7 +69,7 @@
             // button1
             // 
             button1.AccessibleName = "btnEdit";
-            button1.Location = new Point(830, 81);
+            button1.Location = new Point(192, 12);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 3;
@@ -79,7 +79,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(911, 81);
+            btnDelete.Location = new Point(273, 12);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(75, 23);
             btnDelete.TabIndex = 4;
@@ -92,7 +92,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.White;
             label1.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(649, 78);
+            label1.Location = new Point(11, 9);
             label1.Name = "label1";
             label1.Size = new Size(59, 25);
             label1.TabIndex = 5;
@@ -102,7 +102,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.MediumSlateBlue;
+            BackColor = Color.BlueViolet;
             ClientSize = new Size(1008, 642);
             Controls.Add(label1);
             Controls.Add(btnDelete);

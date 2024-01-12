@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Library.Components.Form1
+﻿namespace Library.Components.Form1
 {
     internal static class ChangeButton
     {
         private static Button _btnCurrent;
         private static Form _currentChildForm;
+
+        // The HandleActivateButton method activates a specified button and deactivates the currently active button.
+        // It returns the now active button.
         public static Button HandleActivateButton(object btnSender, Color color)
         {
             if (btnSender == null) return null;
@@ -23,6 +20,8 @@ namespace Library.Components.Form1
 
             return _btnCurrent;
         }
+
+        // The HandleResetButton method resets the currently active button and closes the currently open child form.
         public static void HandleResetButton(Form _currentChildForm)
         {
             HandleDisableButton(_btnCurrent);
@@ -32,10 +31,12 @@ namespace Library.Components.Form1
                 _currentChildForm.Close();
             }
         }
+
+        // The HandleDisableButton method deactivates a specified button.
         public static void HandleDisableButton(Button btnCurrent)
         {
             if (btnCurrent == null) return;
-            btnCurrent.BackColor = Color.SlateBlue;
+            btnCurrent.BackColor = Color.MediumPurple;
             btnCurrent.ForeColor = Color.Black;
             btnCurrent.TextAlign = ContentAlignment.MiddleLeft;
             btnCurrent.TextImageRelation = TextImageRelation.ImageBeforeText;

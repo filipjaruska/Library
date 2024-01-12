@@ -39,7 +39,7 @@ namespace Library.Forms
             // comboBoxBranches
             // 
             comboBoxBranches.FormattingEnabled = true;
-            comboBoxBranches.Location = new Point(155, 39);
+            comboBoxBranches.Location = new Point(12, 27);
             comboBoxBranches.Name = "comboBoxBranches";
             comboBoxBranches.Size = new Size(224, 23);
             comboBoxBranches.TabIndex = 4;
@@ -57,9 +57,10 @@ namespace Library.Forms
             // btnSave
             // 
             btnSave.Enabled = false;
-            btnSave.Location = new Point(849, 39);
+            btnSave.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSave.Location = new Point(849, 12);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(147, 23);
+            btnSave.Size = new Size(147, 50);
             btnSave.TabIndex = 6;
             btnSave.Text = "Save Changes";
             btnSave.UseVisualStyleBackColor = true;
@@ -69,12 +70,13 @@ namespace Library.Forms
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.BlueViolet;
             ClientSize = new Size(1008, 642);
             Controls.Add(btnSave);
             Controls.Add(dataGridView1);
             Controls.Add(comboBoxBranches);
             Name = "FromCopies";
-            Text = "Form1";
+            Text = "Book Copies";
             ((ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }

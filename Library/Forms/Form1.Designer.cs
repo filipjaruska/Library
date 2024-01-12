@@ -186,6 +186,7 @@
             textBox1.Location = new Point(321, 60);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
             textBox1.Size = new Size(382, 60);
             textBox1.TabIndex = 1;
             textBox1.Visible = false;

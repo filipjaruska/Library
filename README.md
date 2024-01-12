@@ -1,21 +1,55 @@
-# Library
+# [Library](https://github.com/filipjaruska/Library)
 
-This library is a school project for managing a fictional library database connection using Entity Framework Core. It includes the `AppDbContext` class, which is used to interact with the database.
+This library is a school project for "managing" a fictional library database connection using Entity Framework Core. It includes the `AppDbContext` class, which is used to interact with the database.
 
-Please note that some of the comments and chapters in this project and .md file are intended for educational purposes and may not provide practical value to the code or the reader. Most notes will be most likely incomplete or unfinished since in most cases they will only contain information that i either want aware of or wanted to remind my self of.
+Please be aware that this project and its accompanying .md file contain numerous comments and chapters that are primarily educational in nature. They may not necessarily add practical value to the code or to the reader. Many of these notes are likely to be incomplete or unfinished, as they primarily serve to document new information or to serve as reminders.
 
-[Github](https://github.com/filipjaruska/Library)
+### **NuGet Packages**
+
+- [Microsoft.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/): This is a cross-platform version of the Entity Framework data access technology. It provides object-relational mapping (ORM) support for .NET with SQL Server and other databases.
+
+- [Npgsql.EntityFrameworkCore.PostgreSQL](https://www.nuget.org/packages/Npgsql.EntityFrameworkCore.PostgreSQL/): This is the PostgreSQL provider for Entity Framework Core. It allows your .NET application to connect to a PostgreSQL database.
+
+- [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/): This is a popular high-performance JSON framework for .NET. It's used here to deserializing JSON.
 
 ### **File Structure**
 
 - **[Data](#appdbcontext)**
 
+  - AppDbContext.cs
+  - [App.config](#database-connection)
+
 - **[Components](#components)**
 
-  - [Data Grid Binder](#datagridbinder)
+  - Form1
+    - ChangeButton.cs
+    - ChildFormOpener.cs
+    - ConfigFileCreator.cs
+  - FormCopies
+    - ButtonHandler.cs
+    - ComboBoxHandler.cs
+    - DataSaver.cs
+  - FormBooks
+    - BookSelection.cs
+    - GoogleCustomSearch.cs
+  - FormBorrowed
+    - ReturnHandler.ccs
+  - FormStaff
+    - StaffEdit.cs
+    - StaffSelection.cs
+  - [DataGridBinder.cs](#datagridbinder)
     - List vs Bindinglist
+  - DataGridStyle.cs
+  - [DeleteDataGridRow.cs](#deletedatagridrowcs)
+  - [OpenBrowser.cs](#openbrowsercs)
 
 - **[Forms](#forms)**
+  - Form1
+  - FormCopies
+  - FormStaff
+  - FormBooks
+  - FormBorrowed
+- **[Icons](#)**
 
 ## AppDbContext
 
@@ -37,8 +71,8 @@ The XML markup in the configuration file sets up the connection string for the d
     />
   </connectionStrings>
   <appSettings>
-    <add key="GoogleCustomSearchApiKey" value="ApiKey" />
-    <add key="GoogleCustomSearchCx" value="SearchCx" />
+    <add key="GoogleCustomSearchApiKey" value="" />
+    <add key="GoogleCustomSearchCx" value="" />
 </appSettings>
 </configuration>
 ```
@@ -96,6 +130,22 @@ When you set a BindingSource's DataSource to a List<>, it internally creates a B
 
 IEditableObject is handled by the BindingSource. It'll call BeginEdit on any implementing object when you change the data in any bound control. You can then call EndEdit/CancelEdit on the BindingSource and it will pass it along to your object. Moving to a different row will call EndEdit as well.
 
-### Fomr orsmghnt
+### DeleteDataGridRow.cs
+
+A class that provides a method to delete the selected row from a DataGridView and the corresponding record from the database. It uses Entity Framework Core to interact with the database. The method is generic and can be used with any entity type and corresponding view model type.
+
+#### [Type Parameters](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-type-parameters)
+
+Type parameters, often denoted by `<T>`, `<T1, T2, ...>`, etc., are placeholders for actual types. They allow you to define generic classes, interfaces, methods, and delegates that can work with different data types while still providing type safety and performance benefits of strong typing.
+
+In a this method `DeleteSelectedRow<T, TViewModel>`, `T` and `TViewModel` are type parameters. They represent any type, and the actual types are specified when the method is called.
+
+##### Constraints
+
+Specified by the `where` keyword, can be applied to type parameters to require more specific type arguments. For example, `where T : class` specifies that `T` must be a reference type. Other constraints can restrict type parameters to value types, to classes that have a parameterless constructor, to classes that inherit from a particular base class, or to classes that implement a particular interface.
+
+### OpenBrowser.cs
+
+It takes a base URL and an optional search query as parameters, URL encodes the search query, appends it to the base URL, and opens the resulting URL in the default web browser. **It's a "Utility Class"**
 
 ## Forms
