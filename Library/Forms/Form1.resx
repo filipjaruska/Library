@@ -121,7 +121,7 @@
   <data name="btnBooks.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADQAAAA0CAYAAADFeBvrAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EQAACxEBf2RfkQAABWNJREFUaEPVmlXINVUUhj+7sLsbBQuxUESx/UX/XxAVLFAEEUEF80JEMdEL8cIO
+        EAAACxABrSO9dQAABWNJREFUaEPVmlXINVUUhj+7sLsbBQuxUESx/UX/XxAVLFAEEUEF80JEMdEL8cIO
         LBQLRQUbRUUFA2zF7u5unwccWKyz55yZE9853wvPzcyefSb2Xuvda5+pEWk5uB6egovgIFgLZqQWg+fh
         3wKfwd1wGuwMC8JEa354AEoPU+JPeBYuhENgNZgYzQXXQenG2/AJ3ALHwLYwH4xFF0DpBgflR3gCzoW9
         YCkYuU6C0s2Mgr/hRbgEDobVYahy7P8DpR+fDnzAE2Eo2h3+gPgDv8J+sDBsAEfCjfAxxHbD5FMYWFvA
@@ -150,7 +150,7 @@
   <data name="btnBorrowed.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADQAAAA0CAYAAADFeBvrAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EQAACxEBf2RfkQAABGRJREFUaEPt2nnIZ1Mcx/HHOhjMkG3sjH0pIiNZ/kCRbSRFlkIk/iCylT/EWKYU
+        EAAACxABrSO9dQAABGRJREFUaEPt2nnIZ1Mcx/HHOhjMkG3sjH0pIiNZ/kCRbSRFlkIk/iCylT/EWKYU
         CkX4Q7KWlKYIWUtZk52y77IvY595v9Wdvs+Zc+/zu8vvd5+nmU+9/pnn3OV37z3nnvO9M7Y8y3jm4ik8
         iWtwFDbAlMyR+AeLMr7A/TgH+2JVTOrsj4XI/ZicX/EcbsCxWB+TJjvje+ROvI70Lq6CkWcTfIzcCbb1
         C7yL9sUjsB6GmnXwBnInMwz/4U3cjtOwETrL6ngGuQOPyu84EK2zEh5E7iCjtgCtczNyO38M+8FB4mT4
@@ -170,6 +170,18 @@
         oSdOb3wc4klUcWDxy/VF2AlFvIs+smn7yzDyOOr4SHjwlzBInyv47cjRLPeJ5AE0HtG6jF/gfLx8zPyS
         lp7oIOyzLlEmXRzOfTQtJ6VzxDJfYjNMicSZdzrZlCvhtF49ZeJ/ZXFZfy+cbVsDdIayPMtQxsYWA37P
         pq7Dg1l+AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="textBox2.Text" xml:space="preserve">
+    <value>This application serves as a management system for a simulated library, utilizing Entity Framework Core to handle database interactions. The core of these interactions is facilitated by the AppDbContext class.
+
+The menu on the left side, includes the following options:
+Book Copies: This section displays all the copies of books available in the library. It also allows users to edit specific details about each book copy.
+Borrowed: This section provides a comprehensive list of all book copies that are currently borrowed by library members.
+Books: This section presents a catalog of all books registered within the library system.
+Staff: This section displays a list of all staff members currently employed by the library.
+
+Please note that clicking on the library logo at any point will navigate you back to the main page.
 </value>
   </data>
   <metadata name="errorProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

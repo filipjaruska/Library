@@ -1,4 +1,4 @@
-# [Library](https://github.com/filipjaruska/Library)
+# [Library](https://github.com/filipjaruska/Library/tree/School)
 
 This library is a school project for "managing" a fictional library database connection using Entity Framework Core. It includes the `AppDbContext` class, which is used to interact with the database.
 

@@ -1,47 +1,44 @@
 ﻿using Library.Components;
 using Library.Data;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static Library.Form1;
 
 namespace Library.Forms
 {
     public partial class FromCopies : Form
     {
+        // A bool to track if any changes have been made.
+        private bool _changesMade = false;
+
+        // The constructor initializes the form and sets up the ComboBox and DataGridView.
         public FromCopies()
         {
             InitializeComponent();
 
+            // Set up the ComboBox with the library branches from the database.
             using (var context = new AppDbContext())
             {
                 comboBoxBranches.DisplayMember = "BranchName";
                 comboBoxBranches.ValueMember = "BranchId";
                 comboBoxBranches.DataSource = context.LibraryBranches.ToList();
             }
-            DataGridStyle.DefaultStyle(dataGridView1);
 
+            // Apply the default style to the DataGridView.
+            DataGridStyle.DefaultStyle(dataGridView1);
             dataGridView1.Columns["CopyId"]!.ReadOnly = true;
             dataGridView1.Columns["BookId"]!.ReadOnly = true;
         }
-        private bool _changesMade = false;
 
+        // Handle the SelectedIndexChanged event of the ComboBox by updating the DataGridView.
         private void comboBoxBranches_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Create a ComboBoxHandler and subscribe it to the SelectedIndexChanged event.
             ComboBoxHandler comboBoxHandler = new ComboBoxHandler(comboBoxBranches, dataGridView1);
             comboBoxBranches.SelectedIndexChanged += comboBoxHandler.HandleSelectedIndexChanged;
 
-            //initial call of the event handler
+            // Call the event handler manually for the initial display.
             comboBoxHandler.HandleSelectedIndexChanged(comboBoxBranches, EventArgs.Empty);
         }
 
+        // Handle the CellContentClick event of the DataGridView by enabling the save button.
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             _changesMade = true;
@@ -50,8 +47,12 @@ namespace Library.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            // Create a ButtonHandler and subscribe it to the Click event.
             ButtonHandler buttonHandler = new ButtonHandler(btnSave, dataGridView1, _changesMade);
             btnSave.Click += buttonHandler.HandleSaveClick;
+
+            // Call the event handler manually to save the changes.
+            buttonHandler.HandleSaveClick(sender, e);
         }
     }
 }

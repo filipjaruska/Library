@@ -11,11 +11,12 @@ namespace Library
 {
     public partial class Form1 : Form
     {
+        // The constructor initializes the form and tests the database connection.
         public Form1()
         {
             InitializeComponent();
             textBox1.Visible = true;
-
+            // Try to get the full path of the App.config file to see if it exists.
             try
             {
                 textBox1.Text = Path.GetFullPath("App.config");
@@ -25,7 +26,7 @@ namespace Library
                 errorProvider1.SetError(textBox1, e.Message);
             }
 
-
+            // Try to open and close the database connection to test if it's working.
             label2.Text = "Succesfuly connected to database";
             try
             {
@@ -45,6 +46,8 @@ namespace Library
 
         private Form _currentChildForm;
         private Button _btnCurrent;
+
+        // Handle the Click events.
         private void btnCopies_Click(object sender, EventArgs e)
         {
             _btnCurrent = HandleActivateButton(sender, Color.Aqua);

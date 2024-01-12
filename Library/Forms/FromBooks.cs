@@ -1,20 +1,4 @@
 ﻿using Library.Components;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Library.Data;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-using static Library.Forms.FormStaff;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.Reflection.Metadata;
-using System.Configuration;
 
 namespace Library.Forms
 {

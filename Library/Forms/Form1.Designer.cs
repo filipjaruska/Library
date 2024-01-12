@@ -42,6 +42,7 @@
             textBox1 = new TextBox();
             label2 = new Label();
             errorProvider1 = new ErrorProvider(components);
+            textBox2 = new TextBox();
             panelMenu.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -74,7 +75,7 @@
             btnBooks.Name = "btnBooks";
             btnBooks.Padding = new Padding(15, 0, 15, 0);
             btnBooks.Size = new Size(234, 60);
-            btnBooks.TabIndex = 4;
+            btnBooks.TabIndex = 3;
             btnBooks.Text = "Books";
             btnBooks.TextAlign = ContentAlignment.MiddleLeft;
             btnBooks.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -92,7 +93,7 @@
             btnStaff.Name = "btnStaff";
             btnStaff.Padding = new Padding(15, 0, 15, 0);
             btnStaff.Size = new Size(234, 60);
-            btnStaff.TabIndex = 3;
+            btnStaff.TabIndex = 4;
             btnStaff.Text = "Staff";
             btnStaff.TextAlign = ContentAlignment.MiddleLeft;
             btnStaff.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -173,6 +174,7 @@
             // panelToFill
             // 
             panelToFill.BackColor = Color.BlueViolet;
+            panelToFill.Controls.Add(textBox2);
             panelToFill.Controls.Add(textBox1);
             panelToFill.Controls.Add(label2);
             panelToFill.Dock = DockStyle.Fill;
@@ -183,12 +185,13 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(321, 60);
+            textBox1.Location = new Point(293, 60);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
-            textBox1.Size = new Size(382, 60);
+            textBox1.Size = new Size(436, 60);
             textBox1.TabIndex = 1;
+            textBox1.TabStop = false;
             textBox1.Visible = false;
             // 
             // label2
@@ -204,6 +207,21 @@
             // errorProvider1
             // 
             errorProvider1.ContainerControl = this;
+            // 
+            // textBox2
+            // 
+            textBox2.BackColor = Color.MediumPurple;
+            textBox2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            textBox2.ForeColor = SystemColors.MenuText;
+            textBox2.Location = new Point(88, 312);
+            textBox2.Multiline = true;
+            textBox2.Name = "textBox2";
+            textBox2.ReadOnly = true;
+            textBox2.Size = new Size(867, 337);
+            textBox2.TabIndex = 2;
+            textBox2.TabStop = false;
+            textBox2.Text = resources.GetString("textBox2.Text");
+            textBox2.Visible = false;
             // 
             // Form1
             // 
@@ -242,5 +260,6 @@
         private TextBox textBox1;
         private ErrorProvider errorProvider1;
         private Button btnBooks;
+        private TextBox textBox2;
     }
 }

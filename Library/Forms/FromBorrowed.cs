@@ -1,17 +1,6 @@
 ﻿using Library.Data;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Library.Components;
 using Microsoft.EntityFrameworkCore;
-using static Library.Forms.FromCopies;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TreeView;
 
 namespace Library.Forms
 {
@@ -24,6 +13,7 @@ namespace Library.Forms
             InitializeComponent();
             DataGridStyle.DefaultStyle(dataGridView1);
 
+            // Create a DataGridBinder and bind the borrowed book copies data to the DataGridView.
             var binder = new DataGridBinder();
             binder.BindDataToGrid(
                 queryFunc: context => context.BookCopies.Include(bc => bc.Book),
@@ -40,9 +30,9 @@ namespace Library.Forms
                 dataGridView: dataGridView1
                 );
         }
-
         private void returned_Click(object sender, EventArgs e)
         {
+            // Create a ReturnHandler and subscribe it to the Click event of the return button.
             ReturnHandler returnHandler = new ReturnHandler(dataGridView1);
             returned.Click += returnHandler.HandleReturnClick;
         }
